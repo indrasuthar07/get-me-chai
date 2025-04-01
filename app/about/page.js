@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const About = () => {
   return (
@@ -34,10 +35,12 @@ const About = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <img
+              <Image
                 src="/group.gif"
                 alt="Collaborate"
-                className="w-24 h-24 mx-auto mb-4"
+                width={96}
+                height={96}
+                className="mx-auto mb-4"
               />
               <h3 className="text-xl font-semibold text-white mb-2">
                 Collaborate
@@ -47,10 +50,12 @@ const About = () => {
               </p>
             </div>
             <div className="text-center">
-              <img
+              <Image
                 src="/coin.gif"
                 alt="Support"
-                className="w-24 h-24 mx-auto mb-4"
+                width={96}
+                height={96}
+                className="mx-auto mb-4"
               />
               <h3 className="text-xl font-semibold text-white mb-2">
                 Get Support
@@ -61,10 +66,12 @@ const About = () => {
               </p>
             </div>
             <div className="text-center">
-              <img
+              <Image
                 src="/tea.gif"
                 alt="Grow"
-                className="w-24 h-24 mx-auto mb-4"
+                width={96}
+                height={96}
+                className="mx-auto mb-4"
               />
               <h3 className="text-xl font-semibold text-white mb-2">Grow</h3>
               <p className="text-gray-300">
