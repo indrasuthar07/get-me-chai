@@ -1,0 +1,14 @@
+.btn {
+  background-color: #1e3a8a; /* Blue */
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #2563eb; /* Lighter Blue */
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.5);
+}
