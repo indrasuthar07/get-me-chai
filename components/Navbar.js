@@ -1,5 +1,6 @@
 "use client"
 import React from 'react'
+import Image from 'next/image'
 import { useSession, signOut } from "next-auth/react"
 import Link from 'next/link'
 
@@ -14,7 +15,7 @@ const Navbar = () => {
           className="text-2xl font-bold text-blue-400 hover:text-blue-500 transition duration-300 flex items-center"
           href="/"
         >
-          <img className="invertImg inline-block mr-2" src="tea.gif" width={44} alt="Logo" />
+          <Image className="invertImg inline-block mr-2" src="/tea.gif" width={44} height={44} alt="Logo" />
           Get Me a Chai!
         </Link>
 
