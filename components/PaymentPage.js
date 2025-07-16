@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Bounce } from 'react-toastify'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image';
 
 const PaymentPage = ({ username }) => {
     const [paymentform, setPaymentform] = useState({ name: "", message: "", amount: "" })
@@ -17,8 +18,14 @@ const PaymentPage = ({ username }) => {
     const router = useRouter()
 
     useEffect(() => {
+        const getData = async () => {
+            let u = await fetchuser(username)
+            setcurrentUser(u)
+            let dbpayments = await fetchpayments(username)
+            setPayments(dbpayments)
+        }
         getData()
-    }, [])
+    }, [username])
 
     useEffect(() => {
         if (searchParams.get("paymentdone") === "true") {
@@ -104,15 +111,17 @@ const PaymentPage = ({ username }) => {
                 {/* Blur Effect for background, matching Home */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-800 via-black to-gray-900 blur-2xl opacity-30"></div>
                 <div className="cover w-full h-full relative flex justify-center mt-10 z-10">
-                    <img
+                    <Image
                         className="rounded-full object-center w-32 h-32 border-4 border-blue-400 relative shadow-lg"
                         src="/pfp.gif"
                         alt="Profile"
+                        width={128}
+                        height={128}
                     />
                 </div>
                 <div className="info flex justify-center items-center mt-10 mb-16 flex-col gap-4 bg-gradient-to-r from-blue-800 to-blue-600 py-8 px-10 rounded-lg shadow-lg w-[95%] md:w-[80%] lg:w-[70%] z-10 border border-blue-500/20">
                     <div className="font-extrabold text-4xl text-blue-400 mb-2">@{username}</div>
-                    <div className="text-lg text-gray-300 italic mb-2">"Fuel my creativity with a chai!"</div>
+                    <div className="text-lg text-gray-300 italic mb-2">&quot;Fuel my creativity with a chai!&quot;</div>
                     <div className="text-lg text-gray-200 flex flex-col md:flex-row md:items-center gap-2 w-full">
                         <span>{payments.length} Supporters · ₹{payments.reduce((a, b) => a + b.amount, 0)} raised</span>
                         {/* Progress Bar */}
@@ -123,7 +132,7 @@ const PaymentPage = ({ username }) => {
                     <div className="payment flex gap-6 w-[90%] mt-8 flex-col md:flex-row">
                         {/* Supporters Card */}
                         <div className="supporters w-full md:w-1/2 bg-gray-800 p-6 rounded-lg shadow-lg border border-blue-500/10">
-                            <h2 className="text-2xl font-bold mb-6 text-blue-400 flex items-center gap-2"><img src='/group.gif' className='w-8 h-8 inline-block' alt='group'/>Top Supporters</h2>
+                            <h2 className="text-2xl font-bold mb-6 text-blue-400 flex items-center gap-2"><Image src='/group.gif' width={32} height={32} className='w-8 h-8 inline-block' alt='group'/>Top Supporters</h2>
                             <ul className="space-y-4">
                                 {payments.length === 0 && <li className="text-gray-400">No supporters yet. Be the first!</li>}
                                 {payments.map((p, i) => (
@@ -131,8 +140,9 @@ const PaymentPage = ({ username }) => {
                                         key={i}
                                         className="flex items-center gap-4 border-b border-blue-900 pb-2 hover:bg-blue-900/30 rounded-lg transition"
                                     >
-                                        <img
+                                        <Image
                                             width={40}
+                                            height={40}
                                             className="rounded-full border-2 border-blue-400 shadow bg-slate-800 p-1"
                                             src="/avatar.gif"
                                             alt="user avatar"
@@ -146,7 +156,7 @@ const PaymentPage = ({ username }) => {
                         </div>
                         {/* Payment Form Card */}
                         <div className="makePayment w-full md:w-1/2 bg-gray-800 p-6 rounded-lg shadow-lg border border-blue-500/10">
-                            <h2 className="text-2xl font-bold mb-6 text-blue-400 flex items-center gap-2"><img src='/tea.gif' className='w-8 h-8 inline-block animate-bounce' alt='chai'/>Contribute Now</h2>
+                            <h2 className="text-2xl font-bold mb-6 text-blue-400 flex items-center gap-2"><Image src='/tea.gif' width={32} height={32} className='w-8 h-8 inline-block animate-bounce' alt='chai'/>Contribute Now</h2>
                             <div className="flex flex-col gap-4">
                                 <input
                                     onChange={handleChange}

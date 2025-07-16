@@ -13,31 +13,30 @@ const Dashboard = () => {
     const [form, setform] = useState({})
 
     useEffect(() => {
+        const getData = async () => {
+            try {
+                let userData = await fetchuser(session.user.name)
+                setform(userData)
+            } catch (error) {
+                toast.error("Failed to fetch user data", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: "light",
+                    transition: Bounce,
+                })
+            }
+        }
         if (!session) {
             router.push('/login')
             return
         } else {
             getData()
         }
-    }, [session])
-
-    const getData = async () => {
-        try {
-            let userData = await fetchuser(session.user.name)
-            setform(userData)
-        } catch (error) {
-            toast.error("Failed to fetch user data", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                theme: "light",
-                transition: Bounce,
-            })
-        }
-    }
+    }, [session, router])
 
     const handleChange = (e) => {
         setform({ ...form, [e.target.name]: e.target.value })   
