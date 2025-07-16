@@ -1,0 +1,61 @@
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+@layer utilities {
+  .animate-gradient {
+    animation: gradientMove 8s ease-in-out infinite alternate;
+  }
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+  .animate-float-slow {
+    animation: floatSlow 6s ease-in-out infinite alternate;
+  }
+  @keyframes floatSlow {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-20px); }
+  }
+  .animate-float-fast {
+    animation: floatFast 3s ease-in-out infinite alternate;
+  }
+  @keyframes floatFast {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-10px); }
+  }
+  .animate-fade-in {
+    animation: fadeIn 1s ease-in;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-slide-in {
+    animation: slideIn 0.7s cubic-bezier(0.4,0,0.2,1) both;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-progress {
+    transition: width 1s cubic-bezier(0.4,0,0.2,1);
+  }
+  .neon-glow {
+    box-shadow: 0 0 16px 2px #a5b4fc, 0 0 32px 4px #f472b6;
+  }
+}
+
+.btn {
+  background-color: #1e3a8a; /* Blue */
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #2563eb; 
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.5);
+}
